@@ -53,6 +53,7 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3" translatesAutoresizingMaskIntoConstraints="NO" id="nni-jw-5gi">
                                                     <rect key="frame" x="0.0" y="0.0" width="99" height="67"/>
+                                                    <color key="backgroundColor" red="1" green="0.98562903889999998" blue="0.92603761269999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIg-7L-JTD">
                                                     <rect key="frame" x="0.0" y="66" width="99" height="21"/>

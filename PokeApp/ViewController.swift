@@ -12,16 +12,40 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     @IBOutlet weak var pokemonsCollection: UICollectionView!
     
+    var pokemons = [Pokemon]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
         pokemonsCollection.delegate = self
         pokemonsCollection.dataSource = self
+        
+        parsePokemonCSV()
     }
 
+    func parsePokemonCSV() {
+        if let path = Bundle.main.path(forResource: "pokemon", ofType: "csv") {
+            do {
+                let text = try String(contentsOfFile: path, encoding: String.Encoding.utf8)
+                let arrays = text.csvRows()
+                for entry in arrays {
+                    let pokemon = Pokemon(name: entry[1], index: entry[0])
+                    pokemons.append(pokemon)
+                }
+            } catch {
+                print("Failed to read text from")
+            }
+        } else {
+            print("Failed to load file from app bundle ")
+        }
+        
+        print("Pokemon size: \(pokemons.count)")
+    }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokeCell", for: indexPath) as? PokeCell {
+            let pokemon = pokemons[indexPath.row]
+            cell.configureCell(pokemon: pokemon)
             return cell
         } else {
             return UICollectionViewCell()
@@ -33,7 +57,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return pokemons.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
