@@ -19,7 +19,7 @@ class PokeCell: UICollectionViewCell {
         
         self.pokemon = pokemon
         
-        image.image = UIImage(named: pokemon.imagePath)
+        image.image = UIImage(named: pokemon.index)
         name.text = pokemon.name
     }
 }
