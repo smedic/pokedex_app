@@ -8,6 +8,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="pokemon_font.ttf">
+            <string>PokemonSolidNormal</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -22,9 +27,33 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7A-rH-Bdp">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PokeApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Frs-5m-2ld">
+                                        <rect key="frame" x="138.5" y="17.5" width="99" height="28"/>
+                                        <fontDescription key="fontDescription" name="PokemonSolidNormal" family="Pokemon Solid" pointSize="24"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4gJ-HL-di0">
+                                        <rect key="frame" x="327" y="14" width="40" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="Ah2-D7-aA0"/>
+                                            <constraint firstAttribute="height" constant="34" id="Jcs-jw-xb2"/>
+                                        </constraints>
+                                        <state key="normal" image="music"/>
+                                        <connections>
+                                            <action selector="musicButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RCo-Zc-X4g"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="1" green="0.32266685571418396" blue="0.2850729786458398" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="Frs-5m-2ld" firstAttribute="centerX" secondItem="x7A-rH-Bdp" secondAttribute="centerX" id="AMu-av-JN1"/>
+                                    <constraint firstAttribute="bottom" secondItem="4gJ-HL-di0" secondAttribute="bottom" constant="14" id="eiY-jP-4U8"/>
                                     <constraint firstAttribute="height" constant="62" id="jrB-46-EqJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="4gJ-HL-di0" secondAttribute="trailing" constant="8" id="qqf-FV-wYK"/>
+                                    <constraint firstItem="4gJ-HL-di0" firstAttribute="top" secondItem="x7A-rH-Bdp" secondAttribute="top" constant="14" id="vAh-5H-r9X"/>
+                                    <constraint firstItem="Frs-5m-2ld" firstAttribute="centerY" secondItem="x7A-rH-Bdp" secondAttribute="centerY" id="ztn-Vp-2th"/>
                                 </constraints>
                             </view>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ZWd-zI-2TX">
@@ -116,5 +145,6 @@
     <resources>
         <image name="3" width="120" height="120"/>
         <image name="bg" width="736" height="552"/>
+        <image name="music" width="100" height="100"/>
     </resources>
 </document>
