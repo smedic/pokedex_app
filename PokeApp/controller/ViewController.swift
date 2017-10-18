@@ -9,11 +9,15 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,
+    UISearchBarDelegate{
 
     @IBOutlet weak var pokemonsCollection: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var pokemons = [Pokemon]()
+    var filtered = [Pokemon]()
+    var isSearchMode = false
     
     var audioPlayer : AVAudioPlayer!
     
@@ -23,8 +27,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         pokemonsCollection.delegate = self
         pokemonsCollection.dataSource = self
         
+        searchBar.delegate = self
+        
         initAudio()
         parsePokemonCSV()
+        
+        searchBar.returnKeyType = UIReturnKeyType.done
     }
     
     func initAudio() {
@@ -40,19 +48,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
 
     func parsePokemonCSV() {
-        if let path = Bundle.main.path(forResource: "pokemon", ofType: "csv") {
-            do {
-                let text = try String(contentsOfFile: path, encoding: String.Encoding.utf8)
-                let arrays = text.csvRows()
-                for entry in arrays {
-                    let pokemon = Pokemon(name: entry[1], index: entry[0])
-                    pokemons.append(pokemon)
-                }
-            } catch {
-                print("Failed to read text from")
+        let path = Bundle.main.path(forResource: "pokemon", ofType: "csv")!
+        do {
+            let text = try String(contentsOfFile: path, encoding: String.Encoding.utf8)
+            let arrays = text.csvRows().dropFirst()
+            for entry in arrays {
+                let pokemon = Pokemon(name: entry[1], index: entry[0])
+                pokemons.append(pokemon)
             }
-        } else {
-            print("Failed to load file from app bundle ")
+        } catch let err as NSError {
+            print("Parsing csv file failed \(err)")
         }
         
         print("Pokemon size: \(pokemons.count)")
@@ -60,7 +65,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokeCell", for: indexPath) as? PokeCell {
-            let pokemon = pokemons[indexPath.row]
+            let pokemon : Pokemon!
+            if isSearchMode {
+                pokemon = filtered[indexPath.row]
+            } else {
+                pokemon = pokemons[indexPath.row]
+            }
             cell.configureCell(pokemon: pokemon)
             return cell
         } else {
@@ -73,6 +83,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if isSearchMode {
+            return filtered.count
+        }
         return pokemons.count
     }
     
@@ -92,6 +105,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             audioPlayer.play()
             sender.alpha = 1.0
         }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == nil || searchBar.text == "" {
+            isSearchMode = false
+            view.endEditing(true)
+        } else {
+            isSearchMode = true
+            let lower = searchBar.text!.lowercased()
+            filtered = pokemons.filter({$0.name.range(of: lower) != nil})
+        }
+        pokemonsCollection.reloadData()
     }
 }
 
