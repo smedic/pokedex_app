@@ -151,11 +151,39 @@
                     <connections>
                         <outlet property="pokemonsCollection" destination="Hfe-JA-gw9" id="WW5-if-F16"/>
                         <outlet property="searchBar" destination="ZWd-zI-2TX" id="HGM-Zi-2Dg"/>
+                        <segue destination="axp-1K-g43" kind="show" identifier="PokemonDetailsVC" id="z6Z-e5-tph"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+        </scene>
+        <!--Pokemon DetailsVC-->
+        <scene sceneID="Jsr-8Q-OX0">
+            <objects>
+                <viewController id="axp-1K-g43" customClass="PokemonDetailsVC" customModule="PokeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S9q-Ve-Ire">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5to-W9-lde">
+                                <rect key="frame" x="97" y="311" width="180" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="MuK-vR-nEW"/>
+                    </view>
+                    <connections>
+                        <outlet property="name" destination="5to-W9-lde" id="71b-fP-1UQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KCg-fC-ZAA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="869.60000000000002" y="127.28635682158921"/>
         </scene>
     </scenes>
     <resources>
