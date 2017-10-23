@@ -7,4 +7,5 @@ target 'PokeApp' do
 
   # Pods for PokeApp
   pod 'Alamofire', '~> 4.5'
+  pod 'SwiftyJSON'
 end

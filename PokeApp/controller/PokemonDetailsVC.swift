@@ -15,8 +15,8 @@ class PokemonDetailsVC: UIViewController {
     @IBOutlet weak var pokemonDesc: UILabel!
     
     @IBOutlet weak var type: UILabel!
-    @IBOutlet weak var height: UILabel!
     @IBOutlet weak var weight: UILabel!
+    @IBOutlet weak var height: UILabel!
     @IBOutlet weak var defence: UILabel!
     @IBOutlet weak var pokedexId: UILabel!
     @IBOutlet weak var baseAttack: UILabel!
@@ -28,8 +28,31 @@ class PokemonDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.name.text = pokemon.name
+        
+        pokemon.downloadPokemonDetails {
+            self.updateUI()
+        }
+    }
+    
+    func updateUI() {
+        
+        weight.text = pokemon.weight
+        height.text = pokemon.height
+        type.text = pokemon.type
+        image.image = UIImage(named: "\(pokemon.index)")
+        
+        if(pokemon.index % 3 == 1) {
+            currentEvoImage.image = UIImage(named: "\(pokemon.index + 1)")
+            nextEvoImage.image = UIImage(named: "\(pokemon.index + 2)")
+        } else if (pokemon.index % 3 == 2){
+            currentEvoImage.image = UIImage(named: "\(pokemon.index + 1)")
+            nextEvoImage.image = UIImage(named: "\(pokemon.index + 1)")
+        } else {
+            currentEvoImage.image = UIImage(named: "\(pokemon.index)")
+            nextEvoImage.image = UIImage(named: "\(pokemon.index)")
+        }
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {

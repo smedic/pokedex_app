@@ -439,14 +439,14 @@
                         <outlet property="currentEvoImage" destination="t8I-uu-g8y" id="JNo-m4-jCd"/>
                         <outlet property="defence" destination="REQ-IU-b9k" id="pqL-z0-duG"/>
                         <outlet property="evoLabel" destination="CEA-53-7XN" id="cgd-iZ-92g"/>
-                        <outlet property="height" destination="ZpE-aJ-fgP" id="ufY-QZ-a5e"/>
-                        <outlet property="image" destination="7wg-qS-Ukd" id="2AV-cQ-KhG"/>
+                        <outlet property="height" destination="ZpE-aJ-fgP" id="scM-r1-TBv"/>
+                        <outlet property="image" destination="7wg-qS-Ukd" id="kYB-d5-JLb"/>
                         <outlet property="name" destination="qpx-1f-Vds" id="a7m-ke-xnu"/>
                         <outlet property="nextEvoImage" destination="Mrq-R3-8oI" id="oZx-g2-bT6"/>
                         <outlet property="pokedexId" destination="sfe-qu-l4z" id="IdB-3O-fUu"/>
                         <outlet property="pokemonDesc" destination="b76-bF-etb" id="10R-SB-4XL"/>
                         <outlet property="type" destination="tlD-17-KqV" id="8sZ-aJ-tvY"/>
-                        <outlet property="weight" destination="ICa-KH-Au3" id="4vR-u3-XrS"/>
+                        <outlet property="weight" destination="sW6-Ld-2BU" id="gtI-bA-bw0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KCg-fC-ZAA" userLabel="First Responder" sceneMemberID="firstResponder"/>
