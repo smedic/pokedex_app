@@ -29,30 +29,34 @@ class PokemonDetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.name.text = pokemon.name
+        self.name.text = pokemon.name.capitalized
+        self.pokedexId.text = "\(pokemon.index)"
         
         pokemon.downloadPokemonDetails {
             self.updateUI()
         }
-    }
-    
-    func updateUI() {
         
-        weight.text = pokemon.weight
-        height.text = pokemon.height
-        type.text = pokemon.type
         image.image = UIImage(named: "\(pokemon.index)")
-        
         if(pokemon.index % 3 == 1) {
             currentEvoImage.image = UIImage(named: "\(pokemon.index + 1)")
             nextEvoImage.image = UIImage(named: "\(pokemon.index + 2)")
         } else if (pokemon.index % 3 == 2){
             currentEvoImage.image = UIImage(named: "\(pokemon.index + 1)")
-            nextEvoImage.image = UIImage(named: "\(pokemon.index + 1)")
+            //nextEvoImage.image = UIImage(named: "\(pokemon.index + 1)")
+            nextEvoImage.isHidden = true
         } else {
             currentEvoImage.image = UIImage(named: "\(pokemon.index)")
-            nextEvoImage.image = UIImage(named: "\(pokemon.index)")
+            //nextEvoImage.image = UIImage(named: "\(pokemon.index)")
+            evoLabel.text = "No evolutions"
+            currentEvoImage.isHidden = true
+            nextEvoImage.isHidden = true
         }
+    }
+    
+    func updateUI() {
+        weight.text = pokemon.weight
+        height.text = pokemon.height
+        type.text = pokemon.type
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {

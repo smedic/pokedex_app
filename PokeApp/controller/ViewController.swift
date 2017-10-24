@@ -41,7 +41,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             audioPlayer = try AVAudioPlayer(contentsOf: URL(string: path)!)
             audioPlayer.prepareToPlay()
             audioPlayer.numberOfLoops = -1
-            audioPlayer.play()
+            //audioPlayer.play()
         } catch let err as NSError {
             print("Audio init failed \(err)")
         }
@@ -103,7 +103,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 105, height: 105)
+        return CGSize(width: 100, height: 100)
     }
     
     @IBAction func musicButtonClicked(_ sender: UIButton) {

@@ -71,7 +71,7 @@ class Pokemon {
                 pokeType += it["type"]["name"].string!
                 counter = counter + 1
             }
-            self._type = pokeType
+            self._type = pokeType.capitalized
             
             completed()
         }
